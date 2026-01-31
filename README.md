@@ -829,9 +829,7 @@ TribeNet/
 └── mvnw.cmd                        # Maven Wrapper (Windows)
 ```
 
-## Development Notes
-
-### Key Implementations
+## Key Implementations
 
 - Custom JWT handling with `JwtUtil`
 - `JwtAuthenticationFilter` for request-level authentication
@@ -841,26 +839,3 @@ TribeNet/
 - Global exception handling
 - Razorpay SDK integration
 - Jakarta Bean Validation
-
-### Best Practices
-
-- Constructor-based dependency injection
-- RESTful API design
-- Proper HTTP status codes
-- Layered architecture
-- Secure password storage
-- Stateless authentication
-- Input validation
-- API documentation
-
-## License
-
-This project is developed as an academic end-term project.
-
-## Contact
-
-For inquiries, please reach out through GitHub.
-
----
-
-**Built with ❤️ using Spring Boot**

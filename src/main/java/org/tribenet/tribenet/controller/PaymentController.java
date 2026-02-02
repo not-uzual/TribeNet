@@ -11,7 +11,7 @@ import org.tribenet.tribenet.service.PaymentService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/payments")
+@RequestMapping("/api/v1/payments")
 @Tag(name = "Payment", description = "Payment management APIs")
 public class PaymentController {
 

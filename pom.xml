@@ -95,6 +95,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!-- Thymeleaf template engine for server-side rendering -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!-- JWT API for token-based authentication -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -115,6 +120,7 @@
             <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- Razorpay integration -->
         <dependency>
             <groupId>com.razorpay</groupId>
             <artifactId>razorpay-java</artifactId>

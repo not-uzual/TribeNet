@@ -38,10 +38,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception{
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(auth ->
-                auth.requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated());
+                auth.requestMatchers("/api/v1/auth/**", "/swagger-ui/**", "/v3/api-docs/**", 
+                        "/", "/index.html", "/*.html", "/*.css", "/*.js", "/static/**", "/css/**", "/js/**").permitAll()
+                        .anyRequest().authenticated());
         http.headers(headers ->
                 headers.frameOptions(frame -> frame.sameOrigin()));
-        http.httpBasic(Customizer.withDefaults());
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

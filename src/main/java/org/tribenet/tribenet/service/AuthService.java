@@ -56,10 +56,18 @@ public class AuthService {
             );
 
             UserDetails userDetails = userService.loadUserByUsername(dto.getUsername());
+            User user = userService.findByUsername(dto.getUsername());
             String role = userDetails.getAuthorities().iterator().next().getAuthority();
             String token = jwtUtil.generateToken(dto.getUsername(), role);
 
-            AuthResponseDTO response = new AuthResponseDTO(token, dto.getUsername(), role);
+            AuthResponseDTO.UserInfo userInfo = new AuthResponseDTO.UserInfo(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getEmail(),
+                    user.getName(),
+                    role
+            );
+            AuthResponseDTO response = new AuthResponseDTO(token, userInfo);
             return ResponseEntity.ok(response);
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid credentials"));

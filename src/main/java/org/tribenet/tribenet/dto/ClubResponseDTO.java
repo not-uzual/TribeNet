@@ -17,4 +17,5 @@ public class ClubResponseDTO {
     private boolean free;
     private BigDecimal price;
     private String clubRole;
+    private Integer memberCount;
 }

@@ -14,4 +14,6 @@ public class CreateOrderRequest {
     private BigDecimal amount;
 
     private String currency = "INR";
+    
+    private Long clubId;
 }

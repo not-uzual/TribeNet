@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.tribenet.tribenet.dto.ClubResponseDTO;
 import org.tribenet.tribenet.dto.UserResponseDTO;
+import org.tribenet.tribenet.model.Club;
 import org.tribenet.tribenet.model.User;
 import org.tribenet.tribenet.model.UserClub;
 import org.tribenet.tribenet.model.UserPrincipal;
@@ -39,9 +40,11 @@ public class UserService implements UserDetailsService {
         return repo.findByUsername(username);
     }
 
-    public List<User> getAllUsers(Authentication auth){
+    public List<UserResponseDTO> getAllUsers(Authentication auth){
         User user = getUserFromAuth(auth);
-        return repo.findAllExceptUserId(user.getId());
+        return repo.findAllExceptUserId(user.getId()).stream()
+                .map(this::convertToUserResponseDTO)
+                .collect(Collectors.toList());
     }
 
     public Optional<UserResponseDTO> getUserById(Long userId) {
@@ -73,14 +76,16 @@ public class UserService implements UserDetailsService {
     }
 
     private ClubResponseDTO convertToClubResponseDTO(UserClub userClub) {
+        Club club = userClub.getClub();
         return new ClubResponseDTO(
-                userClub.getClub().getId(),
-                userClub.getClub().getName(),
-                userClub.getClub().getDescription(),
-                userClub.getClub().getCategory(),
-                userClub.getClub().isFree(),
-                userClub.getClub().getPrice(),
-                userClub.getClubRole().name()
+                club.getId(),
+                club.getName(),
+                club.getDescription(),
+                club.getCategory(),
+                club.isFree(),
+                club.getPrice(),
+                userClub.getClubRole().name(),
+                club.getMembers() != null ? club.getMembers().size() : 0
         );
     }
 }

@@ -14,4 +14,8 @@ public class PaymentVerificationRequest {
 
     @NotBlank
     private String razorpaySignature;
+    
+    private Long userId;
+    
+    private Long clubId;
 }

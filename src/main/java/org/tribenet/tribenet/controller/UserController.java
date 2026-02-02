@@ -24,8 +24,8 @@ public class UserController {
     }
     
     @GetMapping()
-    public ResponseEntity<List<User>> getAllUsers(Authentication auth){
-        List<User> result = userService.getAllUsers(auth);
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers(Authentication auth){
+        List<UserResponseDTO> result = userService.getAllUsers(auth);
         return ResponseEntity.ok(result);
     }
 
